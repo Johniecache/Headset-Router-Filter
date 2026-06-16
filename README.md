@@ -60,9 +60,9 @@ Built with PlatformIO using the ESP-IDF framework.
 1. Install [PlatformIO](https://platformio.org/) (the VS Code extension is easiest).
 2. Set up your credentials:
    ```
-   cp src/secrets.example.h src/secrets.h
+   cp src/env.example.h src/env.h
    ```
-   then edit `src/secrets.h` with your real values. This file is gitignored and is never committed.
+   then edit `src/env.h` with your real values. This file is gitignored and is never committed.
 3. Build and upload:
    ```
    pio run --target upload
@@ -76,11 +76,11 @@ The first build is slower and the firmware is larger than a bare sketch because 
 
 ## Configuration
 
-* Join the `HeadsetFilter` network with the access point password from your `secrets.h`.
-* Open `http://192.168.4.1/` and log in with the dashboard credentials from your `secrets.h`.
+* Join the `HeadsetFilter` network with the access point password from your `env.h`.
+* Open `http://192.168.4.1/` and log in with the dashboard credentials from your `env.h`.
 * Change the upstream network, blocklist, dashboard password, and MAC clone from the settings page. Changes are saved to flash and survive reboots.
 
-**Change the default passwords before real use.** Shipping a security device on `changeme123` defeats the purpose. Set strong values in `secrets.h` (for the build defaults) and on the settings page (for the live device).
+**Change the default passwords before real use.** Shipping a security device on `changeme123` defeats the purpose. Set strong values in `env.h` (for the build defaults) and on the settings page (for the live device).
 
 ## Repository layout
 
