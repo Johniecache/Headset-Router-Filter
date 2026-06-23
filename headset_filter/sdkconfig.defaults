@@ -1,0 +1,20 @@
+# --- Settings that make the NAT/router path work out of the box ---
+# IP forwarding + NAPT (this is the whole reason for the IDF migration:
+# unlike the Arduino core, IDF ships a working NAPT implementation).
+CONFIG_LWIP_IP_FORWARD=y
+CONFIG_LWIP_IPV4_NAPT=y
+CONFIG_LWIP_L2_TO_L3_COPY=y
+
+# Allow enough sockets/DNS for the AP clients + our own upstream use.
+CONFIG_LWIP_MAX_SOCKETS=16
+CONFIG_LWIP_DNS_MAX_SERVERS=3
+
+# Bump main task stack a little; the router + filter do real work.
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=6144
+
+# --- Flash size (chip is 2MB; default board assumes 4MB) ---
+CONFIG_ESPTOOLPY_FLASHSIZE_2MB=y
+
+# --- TLS cert bundle for DoH (DNS-over-HTTPS validates against trusted roots) ---
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE=y
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE_DEFAULT_FULL=y
