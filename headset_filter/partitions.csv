@@ -1,0 +1,11 @@
+# Pocket WiFi Filter - custom 2MB partition table
+# The default layout assumes 4MB and only gives the app 1MB; this chip is 2MB
+# with ~half wasted. Here the app (factory) grows to ~1.9MB so the TLS stack
+# for DoH fits comfortably. NVS keeps the SAME offset/size as the default table,
+# so your saved config (creds, blocklist, clone MAC) survives the change.
+#
+# Name,     Type, SubType,  Offset,    Size
+nvs,        data, nvs,      0x9000,    0x6000
+phy_init,   data, phy,      0xf000,    0x1000
+factory,    app,  factory,  0x10000,   0x1F0000
+# 0x10000 + 0x1F0000 = 0x200000 = exactly 2MB
